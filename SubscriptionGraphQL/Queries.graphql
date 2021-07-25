@@ -1,0 +1,28 @@
+subscription Listen {
+	queryTodo {
+			... on Todo {
+				...ToDoDetail
+			}
+		}
+}
+
+mutation AddNotCompleted($title: String!, $description: String!) {
+  addTodo(input: [{title: $title, description: $description, completed: false}]) {
+	numUids
+  }
+}
+
+query allToDos {
+	queryTodo {
+		... on Todo {
+			...ToDoDetail
+		}
+	}
+}
+
+fragment ToDoDetail on Todo {
+	id
+	title
+	description
+	completed
+}
